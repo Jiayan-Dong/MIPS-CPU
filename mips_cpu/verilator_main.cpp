@@ -59,7 +59,13 @@ void pc_event(const int pc)
         std::cout << "-- EVENT pc=" << std::hex << pc << std::endl;
     if (stream_dump)
     {
-        static std::ofstream f("pc.txt");
+        std::string fname(hexfiles_dir + "/hexfiles/"+ std::string(benchmark) +".pc.txt");
+        static std::ofstream f(fname);
+        if (!f.is_open())
+        {
+            std::cerr << "Failed to open file: " << fname << std::endl;
+            exit(-1);
+        }
         if (stream_dump >= 2)
             f << std::dec << main_time << " ";
         f << std::hex << pc << std::endl;
@@ -102,7 +108,13 @@ void wb_event(const int addr, const int data)
                   << " data=" << data << std::endl;
     if (stream_dump)
     {
-        static std::ofstream f("wb.txt");
+        std::string fname(hexfiles_dir + "/hexfiles/"+ std::string(benchmark) +".wb.txt");
+        static std::ofstream f(fname);
+        if (!f.is_open())
+        {
+            std::cerr << "Failed to open file: " << fname << std::endl;
+            exit(-1);
+        }
         if (stream_dump >= 2)
             f << std::dec << main_time << " ";
         f << std::hex << addr << " " << data << std::endl;
@@ -149,7 +161,13 @@ void ls_event(const int op, const int addr, const int data)
                   << " data=" << data << std::endl;
     if (stream_dump)
     {
-        static std::ofstream f("ls.txt");
+        std::string fname(hexfiles_dir + "/hexfiles/"+ std::string(benchmark) +".ls.txt");
+        static std::ofstream f(fname);
+        if (!f.is_open())
+        {
+            std::cerr << "Failed to open file: " << fname << std::endl;
+            exit(-1);
+        }
         if (stream_dump >= 2)
             f << std::dec << main_time << " ";
         f << std::hex << op << " " << addr << " " << data << std::endl;
