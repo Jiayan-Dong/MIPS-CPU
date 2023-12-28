@@ -17,3 +17,4 @@ wave:
 clean:
 	rm -rf obj_dir/
 	rm -f *.txt
+	rm -f simx.fst
