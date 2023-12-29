@@ -13,4 +13,4 @@ clean:
 	rm -f *.txt
 
 clean_all:
-	rm -f *.c *.dis *.hex *.txt *.bz2 *.h *.ld
+	rm -f *.c *.dis *.hex *.txt *.bz2 *.h *.ld *.s
