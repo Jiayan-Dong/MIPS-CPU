@@ -1,10 +1,10 @@
 BZ2S    := $(wildcard ./*.bz2)
 TXTS    := $(wildcard ./*.txt)
 
-.PHONY : all unzip zip
+.PHONY : unzip zip
 
 unzip: $(BZ2S)
-	bunzip2 $(BZ2S)
+	bunzip2 -k $(BZ2S)
 
 zip: $(TXTS)
 	bzip2 $(TXTS)

@@ -1,6 +1,6 @@
 .PHONY: clean verilate simulate dump wave
 
-CSE148_TOOLS=/home/jd
+CSE148_TOOLS=/home/jd/mips_cpu_deps
 
 verilate:
 	bash -c "source $(CSE148_TOOLS)/oss-cad-suite/environment && verilator --cc --exe --build --trace-fst -DSIMULATION -Imips_core -f verilator_files --top-module mips_core verilator_main.cpp memory.cpp memory_driver.cpp -Wno-fatal"

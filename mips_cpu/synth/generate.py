@@ -1,7 +1,9 @@
 import json
 import os
 
-liberty = f"{os.environ['CSE148_TOOLS']}/FreePDK45/osu_soc/lib/files/gscl45nm.lib"
+CSE148_TOOLS="/home/jd/mips_cpu_deps/"
+
+liberty = CSE148_TOOLS + "FreePDK45/osu_soc/lib/files/gscl45nm.lib"
 
 
 def parse_hierarchy(file_name):

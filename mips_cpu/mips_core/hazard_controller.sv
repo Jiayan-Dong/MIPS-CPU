@@ -161,7 +161,7 @@ module hazard_controller (
 	// Now distribute the control signals to each pipeline registers
 	always_comb
 	begin
-		i2i_hc.stall = 1'b0;
+		i2i_hc.flush = 1'b0;
 		i2i_hc.stall = if_stall;
 		i2d_hc.flush = if_flush;
 		i2d_hc.stall = dec_stall;

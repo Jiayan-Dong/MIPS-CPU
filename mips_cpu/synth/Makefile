@@ -1,5 +1,7 @@
 .PHONY: clean all rams syn sta
 
+CSE148_TOOLS=/home/jd/mips_cpu_deps
+
 configs=
 ifneq (clean,$(MAKECMDGOALS))
 include configs.mk
@@ -10,7 +12,7 @@ ram_targets=$(configs:%=build/sram_%_freepdk45_analytical_TT_1p0V_25C.lib)
 all: netlist.v
 
 mips_core.v: ../mips_core/*.sv
-	$(CSE148_TOOLS)/sv2v-Linux/sv2v -Imips_core ../mips_core/*.sv > $@
+	$(CSE148_TOOLS)/sv2v/bin/sv2v -Imips_core ../mips_core/*.sv > $@
 
 hierarchy.json: mips_core.v
 	bash -c "source $(CSE148_TOOLS)/oss-cad-suite/environment && yosys -s hierarchy.ys -l hierarchy.log -t"
@@ -23,9 +25,9 @@ rams: $(ram_targets)
 build/sram_%_freepdk45_analytical_TT_1p0V_25C.lib : config.py
 	env RAM_CONFIG="$*" \
 		FREEPDK45=$(CSE148_TOOLS)/FreePDK45 \
-		OPENRAM_HOME=$(CSE148_TOOLS)/OpenRAM/compiler \
-		OPENRAM_TECH=$(CSE148_TOOLS)/OpenRAM/technology \
-		   python3 $(CSE148_TOOLS)/OpenRAM/compiler/openram.py config
+		OPENRAM_HOME=$(CSE148_TOOLS)/OpenRAM-1.2.45/compiler \
+		OPENRAM_TECH=$(CSE148_TOOLS)/OpenRAM-1.2.45/technology \
+		   python3 $(CSE148_TOOLS)/OpenRAM-1.2.45/sram_compiler.py config
 
 netlist.v: mips_core.v $(ram_targets) synthesis.ys
 	bash -c "source $(CSE148_TOOLS)/oss-cad-suite/environment && yosys -s synthesis.ys -l synthesis.log -t"

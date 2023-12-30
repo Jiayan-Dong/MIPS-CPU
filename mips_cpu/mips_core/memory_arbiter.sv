@@ -262,7 +262,7 @@ module egress_priority_arbiter #(
 	end
 
 	always_comb begin
-		for (int i = COUNT-1; i >=0; i--)
+		for (int i = COUNT-1; i >=0; i--) // 0 has the highest priority
 			entity_ready[i] = 1'b0;
 		entity_ready[gnt_id] = merged_ready;
 	end
